@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Requests\Euthanasia;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'client_id' => 'required|exists:clients,id',
+            'animal_id' => 'required|exists:animals,id',
+            'doctor' => 'required|string',
+            'description' => 'required|string',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+
+    public function messages(): array{
+        return [
+            'client_id.required' => 'El campo cliente es requerido',
+            'client_id.exists' => 'El cliente seleccionado no existe',
+            'animal_id.required' => 'El campo animal es requerido',
+            'animal_id.exists' => 'El animal seleccionado no existe',
+            'doctor.required' => 'El campo doctor es requerido',
+            'doctor.string' => 'El campo doctor debe ser una cadena de texto',
+            'description.required' => 'El campo descripción es requerido',
+            'description.string' => 'El campo descripción debe ser una cadena de texto',
+        ];
+    }
+}

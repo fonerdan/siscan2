@@ -1,0 +1,8 @@
+.dropify-wrapper .dropify-message p {
+    font-size: initial;
+}
+
+.required::after{
+    content : " *";
+    color: red;
+}
